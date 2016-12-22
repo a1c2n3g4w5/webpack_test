@@ -2,16 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import '../app/css/main.css'
 var $=require('jquery');
-// var ProductBox=require('./productBox.jsx');
-// var ProductBox = React.createClass({
-//   render: function () {
-//     return (
-//       <div className="productBox">
-//         Hello World=!
-//       </div>
-//     );
-//   }
-// });
+
 var Content = React.createClass({
   render: function() {
     return (
@@ -36,7 +27,7 @@ $('#testbtn').click(function(){
 })
 
 $('#testbtn2').click(function(){
-  require(['./productBox2.jsx'],function(){
+  require.ensure(['./productBox2.jsx'],function(){
     // var ProductBox=require('./productBox.jsx');
     // ReactDOM.render(<ProductBox />, document.getElementById('content2'));
     var ProductBox=require('./productBox2.jsx');

@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 var ProductBox = React.createClass({
   render: function () {
     return (
-      <div className="productBox">
+      <div className="productBox2">
         Hello World!
       </div>
     );
