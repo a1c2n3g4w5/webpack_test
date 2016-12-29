@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>数据展示插件化设计</title>
-
-  </head>
-  <body>
-    <div id="mapDiv"></div>
-    
-  
-  
-  </body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>数据展示插件化设计</title>
+        <link rel="stylesheet" type="text/css" href="../ags_api/3.17/esri/css/esri.css">
+        <script type="text/javascript" src="../ags_api/3.17/init.js"></script>
+        <!-- <script type="text/javascript" src="../node_modules/react/dist/react.min.js"></script>
+        <script type="text/javascript" src="../node_modules/react-dom/dist/react-dom.min.js"></script> -->
+        
+    </head>
+    <body>
+   		<div id="mapDiv">
+        <div id="basemap_toggle"> </div>   
+        </div>
+   		<script type="text/javascript">
+        	// Wrap our app startup in AMD module
+		  require([
+		  		'<%= htmlWebpackPlugin.files.js[0] %>', // <-- Vendor bundle?
+		  		'<%= htmlWebpackPlugin.files.js[1] %>'
+		  		// <-- Your application
+		  	],
+		  	function(vendor, bundle) {
+		  		// Do whatewer initialization needed here...
+		  		//
+		  		// NOTE: htmlWebpackPlugin.files.js is an Array
+		  		// that contains names of your bundles in order they were built
+		  	});
+        </script>
+    </body>
 </html>

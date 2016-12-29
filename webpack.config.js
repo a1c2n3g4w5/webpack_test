@@ -1,8 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
-var pathToReactDom = path.resolve(node_modules, 'react-dom/dist/react-dom.min.js');
+var pathToReact = path.resolve(node_modules, 'react/dist/react.js');
+var pathToEsriloader = path.resolve(node_modules, 'esri-loader/index.js');
+var pathToReactDom = path.resolve(node_modules, 'react-dom/dist/react-dom.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -10,6 +11,7 @@ var config = {
 	// watch: true,
 	// context: __dirname + "/app",
 	entry: {
+		
 		vendor: ['jquery', 'react', 'react-dom'],
 		app: [path.resolve(__dirname, "app/js/main.js")]
 	},
@@ -19,13 +21,14 @@ var config = {
 			// react: path.resolve(__dirname, "node_modules/react/dist/react.min.js")
 			"react-dom": pathToReactDom,
 			"react": pathToReact,
-			"ags":"http://zjgis.wxy.gov.cn:8060/arcgis_js_api/3.17"
+			// "esri-loader":pathToEsriloader,
+			"ags":path.resolve(__dirname, "../ags_api/3.17")
 		}
 	},
 	output: {
 		filename: "[chunkhash].[id].bundle.js",
 		publicPath: "/dist/",
-		//libraryTarget: "amd", // <-- There we go
+		libraryTarget: "amd", // <-- There we go／
 		path: path.resolve(__dirname, "./dist")
 			// 当 React 作为一个 node 模块安装的时候，
 			// 我们可以直接指向它，就比如 require('react')
@@ -43,6 +46,7 @@ var config = {
 			callback();
 		}
 	],
+
 	module: {
 		loaders: [{
 				test: /\.jsx?$/,
@@ -74,9 +78,10 @@ var config = {
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: path.resolve(__dirname, "./app/index.html"),
-			inject: true, //允许插件修改哪些内容，包括head与body
+			// inject: true, //允许插件修改哪些内容，包括head与body
 			// hash: true, //为静态资源生成hash值
-
+			chunksSortMode: 'dependency',
+			inject: false,
 			minify: {
 				removeComments: true, //移除HTML中的注释
 				collapseWhitespace: true,

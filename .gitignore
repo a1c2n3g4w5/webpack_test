@@ -1,3 +1,4 @@
 /node_modules/
+/ags_api/
 /dist/
 npm-debug.log
